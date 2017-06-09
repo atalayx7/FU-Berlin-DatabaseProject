@@ -1,18 +1,16 @@
-import csv
-
-
+import unicodecsv
 def func2():
-    with open('firstFile.csv', 'r') as inp, open('secondFile.csv', 'w') as out:
-        writer = csv.writer(out, delimiter=';', lineterminator='\n')
-        stuff = csv.reader(inp, delimiter=';')
+    with open('first_file.csv','r') as inp, open('second_file.csv', 'w') as out:
+        writer = unicodecsv.writer(out, delimiter=';', lineterminator='\n', encoding='ISO-8859-1')
+        stuff = unicodecsv.reader(inp, delimiter=';', encoding='ISO-8859-1')
 
         lines = [l for l in stuff]
         i = 0
         for row in lines:
-            if row[0] == "HillaryClinton":  # If it is HillaryClinton, assign 'True' instead,
-                lines[i][0] = "True"  # benenne sie um in "True"
+            if row[0] == "HillaryClinton": #Falls die erste Spalte HillaryClinton ist,
+                lines[i][0] = "True" #benenne sie um in "True"
             else:
-                lines[i][0] = "False"  # If it is not assign 'False' instead"
+                lines[i][0] = "False" #Sonst benenne sie um in "False"
 
             i = i + 1
         writer.writerows(lines)

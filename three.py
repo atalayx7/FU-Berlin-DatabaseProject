@@ -1,13 +1,12 @@
-import csv
 
-
+import unicodecsv
 def func3():
-    with open('secondFile.csv', 'r') as inp, open('final.csv', 'w') as out:
-        writer = csv.writer(out, delimiter=';', lineterminator='\n')
-        stuff = csv.reader(inp, delimiter=';')
+    with open('second_file.csv', 'r') as inp, open('third_file.csv', 'w') as out:
+        writer = unicodecsv.writer(out, delimiter=';', lineterminator='\n', encoding='ISO-8859-1')
+        stuff = unicodecsv.reader(inp, delimiter=';', encoding='ISO-8859-1')
         special = ''
         lines = [l for l in stuff]
-        j = 0
+        j=0
         for line in lines:
             for i in line[4]:
                 x = i.strip(':')  # remove all the ':' , '-' , 'T' in Time column, so It will be the Time of ID
